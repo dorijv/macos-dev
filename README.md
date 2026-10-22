@@ -19,6 +19,9 @@ One script sets up a fresh Mac. It's safe to run again, and it backs up anything
 - **Neovim**: [NvChad](https://nvchad.com) v2.5 with the Catppuccin theme, LSP, Telescope
   (with ripgrep and fd) and Terraform support.
 - **Claude Code**: installed with the official native installer, with a starter `settings.json`.
+  It turns on AWS's [aws-core](https://docs.aws.amazon.com/agent-toolkit/latest/userguide/plugins.html)
+  plugin (AWS skills + MCP server), and asks before Claude runs `terraform`/`terragrunt` apply or
+  destroy, `aws` delete/terminate/put commands, or any AWS MCP call.
 
 ## Install
 
@@ -28,7 +31,8 @@ git clone https://github.com/dorijv/macos-dev.git ~/macos-dev
 ```
 
 Add `--infra` to also install the Terraform and AWS tools in [`Brewfile.infra`](Brewfile.infra)
-(tfenv, terragrunt, tflint, tfsec, awscli, direnv, aws-sso-util, session-manager-plugin).
+(tfenv, terragrunt, tflint, trivy, infracost, pre-commit, uv, awscli, direnv, aws-sso-util,
+session-manager-plugin).
 
 Then:
 
@@ -36,6 +40,9 @@ Then:
 2. **Neovim**: open `nvim` once and let the plugins install. For Terraform, run
    `:MasonInstall terraform-ls tflint`.
 3. **tmux**: plugins install during setup. Inside tmux, `prefix + I` installs any you add later.
+4. **Terraform repos**: copy [`aws/pre-commit-config.example.yaml`](aws/pre-commit-config.example.yaml)
+   to `.pre-commit-config.yaml` and run `pre-commit install`. Each commit then runs fmt, tflint
+   and trivy.
 
 ## AWS + direnv
 

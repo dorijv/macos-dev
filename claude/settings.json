@@ -1,5 +1,19 @@
 {
+  "permissions": {
+    "ask": [
+      "Bash(terraform *apply*)",
+      "Bash(terraform *destroy*)",
+      "Bash(terragrunt *apply*)",
+      "Bash(terragrunt *destroy*)",
+      "Bash(aws * delete-*)",
+      "Bash(aws * terminate-*)",
+      "Bash(aws * put-*)",
+      "mcp__plugin_aws-core_aws-mcp__call_aws",
+      "mcp__plugin_aws-core_aws-mcp__run_script"
+    ]
+  },
   "enabledPlugins": {
+    "aws-core@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
     "ponytail@ponytail": true
   },
