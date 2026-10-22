@@ -21,6 +21,4 @@ return {
       vim.g.hcl_align = 1
     end,
   },
-
-  { "christoomey/vim-tmux-navigator", lazy = false },
 }

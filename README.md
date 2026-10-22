@@ -18,8 +18,6 @@ One script sets up a fresh Mac. It's safe to run again, and it backs up anything
   user, host, clock), mouse support, vi copy mode, windows numbered from 1.
 - **Neovim**: [NvChad](https://nvchad.com) v2.5 with the Catppuccin theme, LSP, Telescope
   (with ripgrep and fd) and Terraform support.
-- **tmux ⇄ Neovim navigation**: `Ctrl-h/j/k/l` moves between tmux panes and Neovim splits as if
-  they were one ([vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)).
 - **Claude Code**: installed with the official native installer, with a starter `settings.json`.
 
 ## Install
@@ -60,7 +58,9 @@ which `.zshrc` loads if it exists. Keep it out of the repo.
 
 | Where | Key | Does |
 |---|---|---|
-| tmux + nvim | `Ctrl-h/j/k/l` | Move between panes and splits |
+| tmux | `prefix` (`Ctrl-b`) `+ %` / `"` | Split side by side / top and bottom |
+| tmux | `prefix` `+` arrow keys | Move between panes |
+| nvim | `Ctrl-h/j/k/l` | Move between splits |
 | tmux | `prefix` (`Ctrl-b`) `+ I` | Install tmux plugins |
 | nvim | `Space` | Leader key |
 | nvim | `;` | Same as `:` |
@@ -88,5 +88,4 @@ Delete the symlinks and rename the `*.backup-<date>` files back to their origina
 [NvChad](https://github.com/NvChad/NvChad) ·
 [Catppuccin](https://github.com/catppuccin) ·
 [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) ·
-[tpm](https://github.com/tmux-plugins/tpm) ·
-[vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
+[tpm](https://github.com/tmux-plugins/tpm)
