@@ -37,6 +37,25 @@ Then:
    `:MasonInstall terraform-ls tflint`.
 3. **tmux**: plugins install during setup. Inside tmux, `prefix + I` installs any you add later.
 
+## AWS + direnv
+
+With `--infra`, entering a project folder logs you in to AWS SSO and loads temporary
+credentials. Leaving the folder unloads them, and the prompt shows the active profile (☁️).
+
+1. Copy [`aws/config.example`](aws/config.example) to `~/.aws/config` and fill in your SSO URL,
+   account IDs and role. Keep that file out of git.
+2. In each project folder, add an `.envrc` that names the profile, then run `direnv allow`:
+   ```bash
+   use aws_sso myorg-dev
+   ```
+   With one subfolder per environment (`dev/`, `prod/`), put this in each one instead:
+   ```bash
+   use aws_sso "myorg-$(basename "$PWD")"
+   ```
+
+The helper lives in [`direnv/aws-sso.sh`](direnv/aws-sso.sh) and is linked into
+`~/.config/direnv/lib/`.
+
 ## How it works
 
 Your config files become symlinks into this repo, so editing them shows up in `git diff`.
@@ -48,6 +67,7 @@ Anything already in the way is moved to `<file>.backup-<date>` first.
 | `zsh/robbyrussell-aws.zsh-theme` | `~/.oh-my-zsh/custom/themes/` |
 | `tmux/.tmux.conf` | `~/.tmux.conf` |
 | `nvim/` | `~/.config/nvim` |
+| `direnv/aws-sso.sh` | `~/.config/direnv/lib/` |
 | `iterm/dev-env.json` | `~/Library/Application Support/iTerm2/DynamicProfiles/` |
 | `claude/settings.json` | copied to `~/.claude/settings.json`, only if you don't have one |
 

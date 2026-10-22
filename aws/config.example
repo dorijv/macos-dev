@@ -1,0 +1,16 @@
+# Template for ~/.aws/config. Copy it there and fill in your own values;
+# never commit the real file. One profile per account (dev, prod, ...).
+
+[profile myorg-dev]
+sso_start_url = https://<your-org>.awsapps.com/start
+sso_region = <region>
+sso_account_id = <dev-account-id>
+sso_role_name = <role-name>
+region = <region>
+
+[profile myorg-prod]
+sso_start_url = https://<your-org>.awsapps.com/start
+sso_region = <region>
+sso_account_id = <prod-account-id>
+sso_role_name = <role-name>
+region = <region>

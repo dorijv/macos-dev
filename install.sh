@@ -44,6 +44,7 @@ link zsh/.zprofile "$HOME/.zprofile"
 link zsh/robbyrussell-aws.zsh-theme "$HOME/.oh-my-zsh/custom/themes/robbyrussell-aws.zsh-theme"
 link tmux/.tmux.conf "$HOME/.tmux.conf"
 link nvim "$HOME/.config/nvim"
+link direnv/aws-sso.sh "$HOME/.config/direnv/lib/aws-sso.sh"
 link iterm/dev-env.json "$HOME/Library/Application Support/iTerm2/DynamicProfiles/dev-env.json"
 
 "$HOME/.tmux/plugins/tpm/bin/install_plugins"
