@@ -42,6 +42,19 @@ Then:
 With `--infra`, entering a project folder logs you in to AWS SSO and loads temporary
 credentials. Leaving the folder unloads them, and the prompt shows the active profile (☁️).
 
+**The pieces:**
+
+- **AWS IAM Identity Center (SSO)**: you sign in once in the browser and get short-lived
+  credentials for each account and role you have access to. There are no long-lived access keys on disk.
+- **Profiles** in `~/.aws/config`: one per account, for example `myorg-dev` and `myorg-prod`.
+  `AWS_PROFILE` picks which one the `aws` CLI and Terraform use.
+- **[aws-sso-util](https://github.com/benkehoe/aws-sso-util)**: logs in and reuses the cached
+  session, so the browser only opens when it has expired (after 8 hours by default).
+- **[direnv](https://direnv.net)**: runs a folder's `.envrc` when you `cd` in and undoes it when you leave,
+  so credentials only exist in the shell while you're in that project.
+
+**Setup:**
+
 1. Copy [`aws/config.example`](aws/config.example) to `~/.aws/config` and fill in your SSO URL,
    account IDs and role. Keep that file out of git.
 2. In each project folder, add an `.envrc` that names the profile, then run `direnv allow`:
@@ -53,8 +66,20 @@ credentials. Leaving the folder unloads them, and the prompt shows the active pr
    use aws_sso "myorg-$(basename "$PWD")"
    ```
 
+   Your SSO start URL and account IDs are on your AWS access portal page, or ask whoever manages
+   your AWS organisation.
+
+**Checking and fixing:**
+
+| Want to | Run |
+|---|---|
+| See who you're logged in as | `aws sts get-caller-identity` |
+| Log in again after the session expired | `direnv reload` (or `cd` out and back in) |
+| See which profile is active | `echo $AWS_PROFILE`, or look for ☁️ in the prompt |
+
 The helper lives in [`direnv/aws-sso.sh`](direnv/aws-sso.sh) and is linked into
-`~/.config/direnv/lib/`.
+`~/.config/direnv/lib/`. Be careful in folders that use production profiles: everything you run
+there uses those credentials.
 
 ## How it works
 
