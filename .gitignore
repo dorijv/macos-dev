@@ -1,0 +1,6 @@
+# Local agent guardrails, never committed
+.claude/
+
+# Machine-specific and secret files
+*.local
+.env*

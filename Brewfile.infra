@@ -1,0 +1,9 @@
+# Infrastructure tools, installed with ./install.sh --infra
+brew "tfenv"        # terraform versions: run `tfenv install` in a repo with .terraform-version
+brew "terragrunt"
+brew "tflint"       # run `tflint --init` in a repo with .tflint.hcl
+brew "tfsec"
+brew "awscli"
+brew "direnv"
+brew "aws-sso-util"
+cask "session-manager-plugin"

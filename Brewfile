@@ -1,0 +1,6 @@
+cask "iterm2"
+cask "font-jetbrains-mono-nerd-font"
+brew "neovim"
+brew "tmux"
+brew "ripgrep"
+brew "fd"

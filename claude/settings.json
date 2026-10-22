@@ -1,0 +1,18 @@
+{
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "ponytail@ponytail": true
+  },
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "theme": "dark",
+  "editorMode": "normal",
+  "skipWorkflowUsageWarning": true,
+  "agentPushNotifEnabled": true
+}
