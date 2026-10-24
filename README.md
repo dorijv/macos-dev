@@ -22,6 +22,8 @@ One script sets up a fresh Mac. It's safe to run again, and it backs up anything
   It turns on AWS's [aws-core](https://docs.aws.amazon.com/agent-toolkit/latest/userguide/plugins.html)
   plugin (AWS skills + MCP server), and asks before Claude runs `terraform`/`terragrunt` apply or
   destroy, `aws` delete/terminate/put commands, or any AWS MCP call.
+- **[betterleaks](https://betterleaks.com)**: secret scanner. Run `betterleaks git .` in a repo
+  before pushing to check its whole history.
 
 ## Install
 
