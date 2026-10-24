@@ -21,4 +21,10 @@ return {
       vim.g.hcl_align = 1
     end,
   },
+
+  {
+    "infracost/infracost.nvim",
+    ft = { "terraform", "hcl" }, -- NvChad lazy-loads by default, so it needs a trigger
+    opts = {},
+  },
 }
