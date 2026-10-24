@@ -33,7 +33,7 @@ git clone https://github.com/dorijv/macos-dev.git ~/personal/macos-dev
 ```
 
 Add `--infra` to also install the Terraform and AWS tools in [`Brewfile.infra`](Brewfile.infra)
-(tfenv, terragrunt, trivy, infracost, pre-commit, uv, awscli, direnv, aws-sso-util,
+(tfenv, terragrunt, trivy, tfsec, infracost, pre-commit, uv, awscli, direnv, aws-sso-util,
 session-manager-plugin), plus tflint. Homebrew dropped tflint over its BUSL licence, so setup
 downloads a pinned release from GitHub into `~/.local/bin` and checks it against a hash in `install.sh`.
 

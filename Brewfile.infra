@@ -2,6 +2,7 @@
 brew "tfenv"        # terraform versions: run `tfenv install` in a repo with .terraform-version
 brew "terragrunt"
 brew "trivy"        # security scan: `trivy config .` (successor to tfsec)
+brew "tfsec"        # deprecated for trivy, but some repos still call it from terragrunt hooks
 brew "infracost"    # cost of a plan: run `infracost auth login` once, then `infracost breakdown --path .`
 brew "pre-commit"   # run `pre-commit install` in a repo with .pre-commit-config.yaml
 brew "uv"           # uvx runs the AWS MCP server for the aws-core Claude plugin
