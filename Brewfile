@@ -1,5 +1,6 @@
 cask "iterm2"
 cask "font-jetbrains-mono-nerd-font"
+cask "rectangle"   # window snapping shortcuts
 brew "neovim"
 brew "tmux"
 brew "ripgrep"
