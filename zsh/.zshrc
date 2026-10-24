@@ -12,6 +12,15 @@ export TG_TF_FORWARD_STDOUT=true   # plain terraform output, no "time STDOUT ter
 # terragrunt's default pretty format, with HH:MM:SS instead of milliseconds
 export TG_LOG_CUSTOM_FORMAT="%time(format='H:i:s',color=light-black) %level(case=upper,width=6,color=preset) %prefix(path=short-relative,color=gradient,suffix=' ')%tf-path(color=cyan,suffix=': ')%msg(path=relative)"
 
+# deploy: cost estimate first, apply only after you confirm it; args go to terragrunt apply
+tgd() {
+  infracost scan . || return
+  local reply
+  read "reply?Apply? [y/N] "
+  [[ $reply == [yY]* ]] || return 1
+  terragrunt apply "$@"
+}
+
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
 # Machine-specific setup (toolchains, work config) that is not in this repo
