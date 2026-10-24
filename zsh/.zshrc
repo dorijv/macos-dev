@@ -9,6 +9,8 @@ export EDITOR=nvim
 alias vim="nvim"
 alias tg="terragrunt"
 export TG_TF_FORWARD_STDOUT=true   # plain terraform output, no "time STDOUT terraform:" prefix per line
+# terragrunt's default pretty format, with HH:MM:SS instead of milliseconds
+export TG_LOG_CUSTOM_FORMAT="%time(format='H:i:s',color=light-black) %level(case=upper,width=6,color=preset) %prefix(path=short-relative,color=gradient,suffix=' ')%tf-path(color=cyan,suffix=': ')%msg(path=relative)"
 
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
