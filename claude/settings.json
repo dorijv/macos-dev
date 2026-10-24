@@ -8,6 +8,12 @@
       "Bash(aws * delete-*)",
       "Bash(aws * terminate-*)",
       "Bash(aws * put-*)",
+      "Bash(aws s3 rm *)",
+      "Bash(aws s3 rb *)",
+      "Bash(aws s3 mv *)",
+      "Bash(aws s3 sync *)",
+      "Bash(aws * update-*)",
+      "Bash(aws * modify-*)",
       "mcp__plugin_aws-core_aws-mcp__call_aws",
       "mcp__plugin_aws-core_aws-mcp__run_script"
     ]

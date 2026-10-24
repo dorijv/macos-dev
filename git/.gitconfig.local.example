@@ -1,0 +1,10 @@
+# Who you commit as depends on the folder the repo is in. Each folder points at a
+# file holding a [user] block, for example ~/.gitconfig.work:
+#   [user]
+#   	name = Your Name
+#   	email = you@work.example
+# Outside these folders git refuses to commit.
+[includeIf "gitdir:~/work/"]
+	path = ~/.gitconfig.work
+[includeIf "gitdir:~/personal/"]
+	path = ~/.gitconfig.personal

@@ -26,19 +26,21 @@ One script sets up a fresh Mac. It's safe to run again, and it backs up anything
 ## Install
 
 ```bash
-git clone https://github.com/dorijv/macos-dev.git ~/macos-dev
-~/macos-dev/install.sh
+git clone https://github.com/dorijv/macos-dev.git ~/personal/macos-dev
+~/personal/macos-dev/install.sh
 ```
 
 Add `--infra` to also install the Terraform and AWS tools in [`Brewfile.infra`](Brewfile.infra)
-(tfenv, terragrunt, tflint, trivy, infracost, pre-commit, uv, awscli, direnv, aws-sso-util,
-session-manager-plugin).
+(tfenv, terragrunt, trivy, infracost, pre-commit, uv, awscli, direnv, aws-sso-util,
+session-manager-plugin), plus tflint. Homebrew dropped tflint over its BUSL licence, so setup
+downloads a pinned release from GitHub into `~/.local/bin` and checks it against a hash in `install.sh`.
 
 Then:
 
-1. **iTerm2**: Settings → Profiles → select **dev-env** → *Other Actions…* → **Set as Default**.
+1. **iTerm2**: setup makes **dev-env** the default profile, but only if iTerm2 was closed while it ran.
+   Otherwise: Settings → Profiles → select **dev-env** → *Other Actions…* → **Set as Default**.
 2. **Neovim**: open `nvim` once and let the plugins install. For Terraform, run
-   `:MasonInstall terraform-ls tflint`.
+   `:MasonInstall terraform-ls`.
 3. **tmux**: plugins install during setup. Inside tmux, `prefix + I` installs any you add later.
 4. **Terraform repos**: copy [`aws/pre-commit-config.example.yaml`](aws/pre-commit-config.example.yaml)
    to `.pre-commit-config.yaml` and run `pre-commit install`. Each commit then runs fmt, tflint
@@ -88,6 +90,10 @@ The helper lives in [`direnv/aws-sso.sh`](direnv/aws-sso.sh) and is linked into
 `~/.config/direnv/lib/`. Be careful in folders that use production profiles: everything you run
 there uses those credentials.
 
+> **Working for an organisation?** The Claude rules here are a general starting point. If your
+> organisation keeps its own harness repository with AWS rules and docs, use that for work
+> projects; it takes precedence over this repo.
+
 ## How it works
 
 Your config files become symlinks into this repo, so editing them shows up in `git diff`.
@@ -98,6 +104,7 @@ Anything already in the way is moved to `<file>.backup-<date>` first.
 | `zsh/.zshrc`, `zsh/.zprofile` | `~/.zshrc`, `~/.zprofile` |
 | `zsh/robbyrussell-aws.zsh-theme` | `~/.oh-my-zsh/custom/themes/` |
 | `tmux/.tmux.conf` | `~/.tmux.conf` |
+| `git/.gitconfig` | `~/.gitconfig` |
 | `nvim/` | `~/.config/nvim` |
 | `direnv/aws-sso.sh` | `~/.config/direnv/lib/` |
 | `iterm/dev-env.json` | `~/Library/Application Support/iTerm2/DynamicProfiles/` |
@@ -105,6 +112,14 @@ Anything already in the way is moved to `<file>.backup-<date>` first.
 
 Machine-specific setup (language toolchains, work config, secrets) belongs in `~/.zshrc.local`,
 which `.zshrc` loads if it exists. Keep it out of the repo.
+
+**Git identity per folder.** Setup creates `~/.gitconfig.local` from
+[`git/.gitconfig.local.example`](git/.gitconfig.local.example): repos under `~/work/` commit with
+the name and email in `~/.gitconfig.work`, repos under `~/personal/` with `~/.gitconfig.personal`.
+Create those two files and rename the folders to suit. Anywhere else git refuses to commit rather
+than guess. Pushing uses the same GitHub login everywhere; add each email to that account
+(GitHub → Settings → Emails) so commits link to it. Use `git config --file ~/.gitconfig.work …`
+(not `--global`, which would write into this repo).
 
 ## Keys worth knowing
 

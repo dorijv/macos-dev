@@ -4,3 +4,5 @@ brew "neovim"
 brew "tmux"
 brew "ripgrep"
 brew "fd"
+brew "gh"
+brew "node"        # ponytail plugin hooks run on node
