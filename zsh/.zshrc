@@ -8,6 +8,7 @@ export EDITOR=nvim
 
 alias vim="nvim"
 alias tg="terragrunt"
+export TG_TF_FORWARD_STDOUT=true   # plain terraform output, no "time STDOUT terraform:" prefix per line
 
 command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 
